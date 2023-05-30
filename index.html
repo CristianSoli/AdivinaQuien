@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adivina Quién - Juego</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    div {
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button.clicked {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      background-color: #3e8e41;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Adivina Quién - Juego</h1>
+
+  <div id="pregunta1">
+    <h2>¿Cuánto mide?</h2>
+    <button onclick="seleccionarAltura('alto'); mostrarPregunta('pregunta2')">Alto</button>
+    <button onclick="seleccionarAltura('promedio'); mostrarPregunta('pregunta2')">Promedio</button>
+    <button onclick="seleccionarAltura('bajo'); mostrarPregunta('pregunta2')">Bajo</button>
+  </div>
+
+  <div id="pregunta2" class="hidden">
+    <h2>¿Cómo tiene su cabello?</h2>
+    <button onclick="seleccionarCabello('liso'); mostrarPregunta('pregunta3')">Cabello liso</button>
+    <button onclick="seleccionarCabello('ondulado'); mostrarPregunta('pregunta3')">Cabello ondulado</button>
+    <button onclick="seleccionarCabello('rizado'); mostrarPregunta('pregunta3')">Cabello rizado</button>
+    <button onclick="seleccionarCabello('afro'); mostrarPregunta('pregunta3')">Cabello afro</button>
+  </div>
+
+  <div id="pregunta3" class="hidden">
+    <h2>¿Cuál es la personalidad de tu personaje?</h2>
+    <button onclick="seleccionarPersonalidad('introvertido'); mostrarPregunta('pregunta4')">Introvertido</button>
+    <button onclick="seleccionarPersonalidad('extrovertido'); mostrarPregunta('pregunta4')">Extrovertido</button>
+  </div>
+
+  <div id="pregunta4" class="hidden">
+    <h2>¿De qué color es su piel?</h2>
+    <button onclick="seleccionarPiel('morena'); mostrarPregunta('pregunta5')">Morena</button>
+    <button onclick="seleccionarPiel('aperlado'); mostrarPregunta('pregunta5')">Aperlado</button>
+    <button onclick="seleccionarPiel('blanca'); mostrarPregunta('pregunta5')">Blanca</button>
+  </div>
+
+  <div id="pregunta5" class="hidden">
+    <h2>¿Usa lentes?</h2>
+    <button onclick="seleccionarusaLentes('si'); mostrarPregunta('pregunta6')">Sí</button>
+    <button onclick="seleccionarusaLentes('no'); mostrarPregunta('pregunta6')">No</button>
+  </div>
+
+  <div id="pregunta6" class="hidden">
+    <h2>¿Trabaja?</h2>
+    <button onclick="seleccionarTrabajo('sí'); mostrarPregunta('pregunta7')">Sí</button>
+    <button onclick="seleccionarTrabajo('no'); mostrarPregunta('pregunta7')">No</button>
+  </div>
+
+  <div id="pregunta7" class="hidden">
+    <h2>¿Dónde reside?</h2>
+    <button onclick="seleccionarResidencia('San Pedro'); mostrarPregunta('adivinar')">San Pedro</button>
+    <button onclick="seleccionarResidencia('Ejido'); mostrarPregunta('adivinar')">Ejido</button>
+    <button onclick="seleccionarResidencia('Chavez'); mostrarPregunta('adivinar')">Chavez</button>
+  </div>
+
+  <div id="adivinar" class="hidden">
+    <button onclick="adivinar()">Adivinar</button>
+  </div>
+
+  <script>
+    let altura;
+    let cabello;
+    let personalidad;
+    let piel;
+    let trabaja;
+    let usaLentes;
+    let residencia;
+
+    function seleccionarAltura(opcion) {
+      altura = opcion;
+    }
+
+    function seleccionarCabello(opcion) {
+      cabello = opcion;
+    }
+
+    function seleccionarPersonalidad(opcion) {
+      personalidad = opcion;
+    }
+
+    function seleccionarPiel(opcion) {
+      piel = opcion;
+    }
+
+    function seleccionarTrabajo(opcion) {
+      trabaja = opcion;
+    }
+
+    function seleccionarusaLentes(opcion) {
+      usaLentes = opcion;
+    }
+
+    function seleccionarResidencia(opcion) {
+      residencia = opcion;
+    }
+
+    function mostrarPregunta(pregunta) {
+      const preguntaElement = document.getElementById(pregunta);
+      preguntaElement.classList.remove("hidden");
+    }
+
+    function adivinar() {
+      if (
+        altura &&
+        cabello &&
+        personalidad &&
+        piel &&
+        trabaja &&
+        usaLentes &&
+        residencia
+      ) {
+        if (
+          altura === 'alto' &&
+          cabello === 'rizado' &&
+          personalidad === 'introvertido' &&
+          piel === 'blanca' &&
+          trabaja === 'no' &&
+          usaLentes === 'no' &&
+          residencia === 'Ejido'
+        ) {
+          alert('¡Adivinaste! El personaje es Alfredo.');
+        } else if (
+          altura === 'promedio' &&
+          cabello === 'liso' &&
+          personalidad === 'extrovertido' &&
+          piel === 'blanca' &&
+          trabaja === 'no' &&
+          usaLentes === 'si' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es Gerardo.');
+        } else if (
+          altura === 'promedio' &&
+          cabello === 'liso' &&
+          personalidad === 'introvertido' &&
+          piel === 'aperlado' &&
+          trabaja === 'si' &&
+          usaLentes === 'no' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es Luis.');
+        } else if (
+          altura === 'bajo' &&
+          cabello === 'ondulado' &&
+          personalidad === 'introvertido' &&
+          piel === 'apaerlado' &&
+          trabaja === 'si' &&
+          usaLentes === 'no' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es Ana.');
+        } else if (
+          altura === 'alto' &&
+          cabello === 'ondulado' &&
+          personalidad === 'extrovertido' &&
+          piel === 'blanca' &&
+          trabaja === 'si' &&
+          usaLentes === 'si' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es Gonzalo.');
+        } else if (
+          altura === 'alto' &&
+          cabello === 'liso' &&
+          personalidad === 'introvertido' &&
+          piel === 'morena' &&
+          trabaja === 'no' &&
+          usaLentes === 'no' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es Lalito.');
+        } else if (
+          altura === 'promedio' &&
+          cabello === 'liso' &&
+          personalidad === 'introvertido' &&
+          piel === 'blanca' &&
+          trabaja === 'no' &&
+          usaLentes === 'no' &&
+          residencia === 'Chavez'
+        ) {
+          alert('¡Adivinaste! El personaje es Diego.');
+        } else if (
+          altura === 'bajo' &&
+          cabello === 'rizado' &&
+          personalidad === 'extrovertido' &&
+          piel === 'morena' &&
+          trabaja === 'no' &&
+          usaLentes === 'si' &&
+          residencia === 'San Pedro'
+        ) {
+          alert('¡Adivinaste! El personaje es María.');
+        } else {
+          alert('No adivinaste. Inténtalo de nuevo.');
+        }
+      } else {
+        alert('Debes responder todas las preguntas antes de adivinar.');
+      }
+    }
+  </script>
+</body>
+</html>
